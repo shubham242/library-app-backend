@@ -1,6 +1,7 @@
 package com.shubham.libraryappbackend.config;
 
 import com.shubham.libraryappbackend.entity.Book;
+import com.shubham.libraryappbackend.entity.Review;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;
@@ -17,8 +18,10 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
         HttpMethod[] theUnsupportedActions = {HttpMethod.POST, HttpMethod.DELETE, HttpMethod.PATCH, HttpMethod.PUT};
         
         config.exposeIdsFor(Book.class);
+        config.exposeIdsFor(Review.class);
         
         disableHttpMethod(Book.class, config, theUnsupportedActions);
+        disableHttpMethod(Review.class, config, theUnsupportedActions);
         
         cors.addMapping(config.getBasePath()+"/**")
                 .allowedOrigins(theAllowedOrigins);
